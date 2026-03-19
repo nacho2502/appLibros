@@ -1,4 +1,4 @@
-function BookCard({ book }) {
+function BookCard({ book, onClick }) {
   const coverId = book.cover_i
   const coverUrl = coverId
     ? `https://covers.openlibrary.org/b/id/${coverId}-M.jpg`
@@ -8,7 +8,7 @@ function BookCard({ book }) {
   const year = book.first_publish_year ?? 'Año desconocido'
 
   return (
-    <div className="flex flex-col gap-2 cursor-pointer group">
+    <div onClick={onClick} className="flex flex-col gap-2 cursor-pointer group">
       {coverUrl ? (
         <img
           src={coverUrl}
