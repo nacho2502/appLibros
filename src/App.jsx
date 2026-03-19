@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import SearchBar from './components/SearchBar'
+import BookCard from './components/BookCard'
 
 function App() {
   const [books, setBooks] = useState([])
@@ -20,9 +21,11 @@ function App() {
       <h1>Mi app de libros</h1>
       <SearchBar onSearch={handleSearch} />
       {loading && <p>Buscando...</p>}
-      {books.map((book) => (
-        <p key={book.key}>{book.title}</p>
-      ))}
+      <div>
+        {books.map((book) => (
+          <BookCard key={book.key} book={book} />
+        ))}
+      </div>
     </div>
   )
 }
