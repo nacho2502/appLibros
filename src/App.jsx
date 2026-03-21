@@ -4,12 +4,14 @@ import BookCard from './components/BookCard'
 import BookDetail from './components/BookDetail'
 import MyLibrary from './components/MyLibrary'
 import useLibrary from './hooks/useLibrary'
+import Stats from './components/Stats'
 
 function App() {
   const [books, setBooks] = useState([])
   const [loading, setLoading] = useState(false)
   const [selectedBook, setSelectedBook] = useState(null)
   const [showLibrary, setShowLibrary] = useState(false)
+  const [showStats, setShowStats] = useState(false)
   const library = useLibrary()
 
   async function handleSearch(query) {
@@ -45,6 +47,15 @@ function App() {
     )
   }
 
+  if (showStats) {
+    return (
+      <Stats
+        library={library}
+        onBack={() => setShowStats(false)}
+      />
+    )
+  }
+
   return (
     <div className="min-h-screen bg-gray-950 text-white">
       <div className="max-w-6xl mx-auto px-6 py-10">
@@ -52,7 +63,13 @@ function App() {
         <div className="flex items-center justify-between mb-2">
           <div className="w-36" />
           <h1 className="text-4xl font-bold text-center">📚 Mi App de Libros</h1>
-          <div className="w-36 flex justify-end">
+          <div className="w-36 flex justify-end gap-2">
+            <button
+              onClick={() => setShowStats(true)}
+              className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+            >
+              📊 Estadísticas
+            </button>
             <button
               onClick={() => setShowLibrary(true)}
               className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 text-sm font-medium px-4 py-2 rounded-lg transition-colors"
