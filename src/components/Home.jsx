@@ -69,7 +69,7 @@ function Home({ library, onBookClick, onSearch, onLibrary, onStats, username, on
       <div className="max-w-6xl mx-auto px-6 py-8">
 
         <div className="flex items-center justify-between mb-10">
-          <p className="text-xl font-bold">📚 appLibros</p>
+          <p className="text-xl font-bold">📚 YouBook</p>
           <div className="flex gap-2">
             <button
               onClick={onSearch}

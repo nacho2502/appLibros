@@ -1,16 +1,61 @@
-# React + Vite
+# 📚 YouBook
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+YouBook es una aplicación de escritorio para gestionar tu biblioteca personal, inspirada en Goodreads pero con tu propio estilo.
 
-Currently, two official plugins are available:
+## ¿Qué es youBook?
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+YouBook es una app personal para llevar el control de tus lecturas. Busca cualquier libro del mundo, añádelo a tu biblioteca, valóralo con una nota del 1 al 10 y consulta estadísticas detalladas sobre tus hábitos de lectura.
 
-## React Compiler
+## Características
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Búsqueda de libros** conectada a la API de Open Library, con portadas, autor, año, sinopsis y más información de cada libro
+- **Biblioteca personal** con tres estados: Quiero leer, Leyendo y Leído
+- **Sistema de valoración del 1 al 10** en lugar del clásico sistema de estrellas
+- **Dashboard de estadísticas** con gráficas de distribución de notas, libros por mes, top autores y géneros más leídos
+- **Recomendaciones personalizadas** basadas en los géneros que más lees
+- **App de escritorio** gracias a Electron, disponible para Windows y Mac
 
-## Expanding the ESLint configuration
+## Tecnologías
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- [React](https://react.dev/) — interfaz de usuario
+- [Electron](https://www.electronjs.org/) — empaquetado como app de escritorio
+- [Vite](https://vitejs.dev/) — bundler y servidor de desarrollo
+- [Tailwind CSS](https://tailwindcss.com/) — estilos
+- [Recharts](https://recharts.org/) — gráficas y estadísticas
+- [Open Library API](https://openlibrary.org/developers/api) — datos de libros
+
+## Instalación y uso
+
+### Requisitos
+- Node.js 18 o superior
+
+### Pasos
+```bash
+# Clona el repositorio
+git clone https://github.com/nacho2502/appLibros.git
+cd appLibros
+
+# Instala las dependencias
+npm install
+
+# Arranca en el navegador
+npm run dev
+
+# Arranca como app de escritorio
+npm run electron:dev
+```
+
+## Generar instalador
+```bash
+npm run electron:build
+```
+
+El instalador se generará en la carpeta `release/`.
+
+## Estado del proyecto
+
+El proyecto está en desarrollo activo. Funcionalidades previstas próximamente:
+
+- Reseñas y notas personales por libro
+- Exportar estadísticas
+- Sincronización en la nube
