@@ -7,47 +7,57 @@ function useLibrary() {
   })
 
   useEffect(() => {
-  const saved = localStorage.getItem('appLibros_library')
-  const current = saved ? JSON.parse(saved) : []
-  const booksSinSubjects = current.filter(b => !b.subjects || b.subjects.length === 0)
-  if (booksSinSubjects.length === 0) return
+    const saved = localStorage.getItem('appLibros_library')
+    const current = saved ? JSON.parse(saved) : []
+    const booksSinSubjects = current.filter(b => !b.subjects || b.subjects.length === 0)
+    if (booksSinSubjects.length === 0) return
 
-  async function migrateSubjects() {
-    const updated = await Promise.all(
-      current.map(async (book) => {
-        if (book.subjects && book.subjects.length > 0) return book
-        try {
-          const res = await fetch(`https://openlibrary.org${book.key}.json`)
-          const data = await res.json()
-          const subjects = data.subjects ? data.subjects.slice(0, 8) : []
-          return { ...book, subjects }
-        } catch {
-          return { ...book, subjects: [] }
-        }
-      })
-    )
-    localStorage.setItem('appLibros_library', JSON.stringify(updated))
-    setLibrary(updated)
-  }
+    async function migrateSubjects() {
+      const updated = await Promise.all(
+        current.map(async (book) => {
+          if (book.subjects && book.subjects.length > 0) return book
+          try {
+            const res = await fetch(`https://openlibrary.org${book.key}.json`)
+            const data = await res.json()
+            const subjects = data.subjects ? data.subjects.slice(0, 8) : []
+            return { ...book, subjects }
+          } catch {
+            return { ...book, subjects: [] }
+          }
+        })
+      )
+      localStorage.setItem('appLibros_library', JSON.stringify(updated))
+      setLibrary(updated)
+    }
 
-  migrateSubjects()
-}, [])
+    migrateSubjects()
+  }, [])
 
   function saveToStorage(newLibrary) {
     localStorage.setItem('appLibros_library', JSON.stringify(newLibrary))
     setLibrary(newLibrary)
   }
 
-  function addBook(book, status) {
+  async function addBook(book, status) {
     const exists = library.find(b => b.key === book.key)
     if (exists) return
+
+    let subjects = []
+    try {
+      const res = await fetch(`https://openlibrary.org${book.key}.json`)
+      const data = await res.json()
+      subjects = data.subjects ? data.subjects.slice(0, 8) : []
+    } catch {
+      subjects = []
+    }
+
     const newBook = {
       key: book.key,
       title: book.title,
       author_name: book.author_name,
       cover_i: book.cover_i,
       first_publish_year: book.first_publish_year,
-      subjects: book.subject ? book.subject.slice(0, 8) : [],
+      subjects,
       status,
       rating: null,
       addedAt: Date.now()

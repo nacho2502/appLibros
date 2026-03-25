@@ -1,7 +1,5 @@
 # 📚 YouBook
 
-YouBook es una aplicación de escritorio para gestionar tu biblioteca personal, inspirada en Goodreads pero con tu propio estilo.
-
 ## ¿Qué es youBook?
 
 YouBook es una app personal para llevar el control de tus lecturas. Busca cualquier libro del mundo, añádelo a tu biblioteca, valóralo con una nota del 1 al 10 y consulta estadísticas detalladas sobre tus hábitos de lectura.
@@ -32,8 +30,8 @@ YouBook es una app personal para llevar el control de tus lecturas. Busca cualqu
 ### Pasos
 ```bash
 # Clona el repositorio
-git clone https://github.com/nacho2502/appLibros.git
-cd appLibros
+git clone https://github.com/nacho2502/YouBook.git
+cd YouBook
 
 # Instala las dependencias
 npm install
