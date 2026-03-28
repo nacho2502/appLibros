@@ -40,6 +40,12 @@
     "directories": {
       "output": "release"
     },
+    "extraFiles": [
+      {
+        "from": "node_modules/electron/dist/icudtl.dat",
+        "to": "icudtl.dat"
+      }
+    ],  
     "files": [
       "dist/**/*",
       "electron/**/*"
